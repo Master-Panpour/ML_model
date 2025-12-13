@@ -1,134 +1,191 @@
-project:
-  name: "Malicious URL Detection API"
-  description: "A FastAPI‑based service to detect whether a URL is malicious or benign using blacklist API checks with caching, a machine learning model, and online learning."
-features:
-  - "Blacklist API checks with caching"
-  - "Machine learning classifier trained on a Hugging Face dataset"
-  - "SSL certificate validity & features used in ML model"
-  - "Online learning (incremental updates) using user feedback"
-  - "FastAPI with interactive API docs"
-  - "REST API integration"
+# 🔐 Malicious URL Detection API
 
-structure:
-  - app.py: "FastAPI application"
-  - main.py: "Model training, feature extraction, prediction"
-  - blacklisted_api.py: "Blacklist API integration with caching"
-  - urls_cache.db: "SQLite cache for blacklist responses"
-  - malicious_url_model.pkl: "Persisted machine learning model"
-  - malicious_url_scaler.pkl: "Persisted feature scaler"
-  - requirements.txt: "Python dependencies"
-  - README.md: "Project documentation"
+![GitHub Repo Size](https://img.shields.io/github/repo-size/Master-Panpour/ML_model)
+![GitHub Stars](https://img.shields.io/github/stars/Master-Panpour/ML_model?style=social)
+![GitHub License](https://img.shields.io/github/license/Master-Panpour/ML_model)
 
-requirements:
-  python_version: "3.8+"
-  dependencies:
-    - fastapi
-    - uvicorn
-    - scikit-learn
-    - pandas
-    - joblib
-    - requests
-    - requests-cache
-    - datasets
-    - tldextract
+A **FastAPI‑based service** to detect whether a URL is **malicious or benign** using:
 
-configuration:
-  blacklist_api:
-    file: "blacklisted_api.py"
-    variable: "APIVOID_API_KEY"
-    replace_with: "Your API key for the blacklist service"
+- 🌐 Blacklist API checks (with caching)
+- 🤖 Machine Learning model trained on a Hugging Face dataset
+- 📊 URL structural & SSL features
+- 🔄 Incremental learning via user feedback
 
-run:
-  install_dependencies: "pip install -r requirements.txt"
-  start_server: "uvicorn app:app --reload"
-  base_url: "http://127.0.0.1:8000"
-  docs: "http://127.0.0.1:8000/docs"
+---
 
-api_endpoints:
-  health_check:
-    method: "GET"
-    path: "/"
-    description: "Health check endpoint"
-    example_response:
-      message: "Service running"
+## 📌 Table of Contents
 
-  predict:
-    method: "POST"
-    path: "/predict"
-    request_body:
-      urls:
-        type: "array"
-        items: "string"
-    response_example:
-      - url: "http://example.com/login"
-        blacklist:
-          success: true
-          risk_score: 10
-          blacklist_engines: {}
-        prediction: "benign"
-      - url: "https://malicious.ru/test"
-        blacklist:
-          success: true
-          risk_score: 80
-          blacklist_engines: {}
-        prediction: "malicious (blacklist)"
+1. [Overview](#overview)  
+2. [Features](#features)  
+3. [How It Works](#how-it-works)  
+4. [Quick Start](#quick-start)  
+5. [API Endpoints](#api-endpoints)  
+6. [Online Learning](#online-learning)  
+7. [Tech Stack](#tech-stack)  
+8. [Security](#security)  
+9. [Contributing](#contributing)  
+10. [License](#license)
 
-  feedback:
-    method: "POST"
-    path: "/feedback"
-    request_body:
-      urls:
-        type: "array"
-        items: "string"
-      correct_labels:
-        type: "array"
-        items: "integer"
-    response:
-      status: "model updated"
+---
 
-cache:
-  file: "urls_cache.db"
-  description: "Persistent SQLite cache for blacklist results"
+## 📌 Overview
 
-workflow:
-  blacklist_flow:
-    - step: "Check cache for URL"
-    - step: "If cached and valid, return cached result"
-    - step: "If not cached, call external blacklist API"
-    - step: "Save response to cache"
+This project provides an API to classify URLs as malicious or benign through a blend of external threat intelligence and machine learning. The model learns over time using user feedback.
 
-  ml_flow:
-    - step: "Extract features from URL"
-    - step: "Run model prediction"
-    - step: "Return prediction"
+---
 
-  feedback_flow:
-    - step: "Receive user verified labels"
-    - step: "Update model via online learning"
-    - step: "Persist updated model"
+## 🚀 Features
 
-dataset:
-  name: "Anvilogic/URL‑Guardian‑Dataset"
-  source: "Hugging Face"
+- ✅ Real‑time blacklist reputation checks with caching  
+- ✅ ML classification using lexical/structural and SSL certificate features  
+- ⚡ FastAPI server with auto‑generated documentation  
+- 🧠 Incremental learning using user‑provided feedback  
+- 📦 Easy integration in other projects
 
-future_improvements:
-  - "Add WHOIS and domain age features"
-  - "Add additional threat intelligence integrations"
-  - "Containerize with Docker"
-  - "Add authentication and rate‑limiting"
+---
 
-contributing:
-  steps:
-    - "Fork the repository"
-    - "Create a feature branch"
-    - "Commit changes"
-    - "Push and create a pull request"
+## 🧠 How It Works
 
-license: "MIT License"
+### 1. Blacklist API Check
 
-contact:
-  author: "Master_Panpour"
-  platforms:
-    - "LinkedIn"
-    - "GitHub"
-    - "Email"
+Calls a threat intelligence API to get risk scores and flags for known malicious URLs, with caching to reduce redundant API requests. :contentReference[oaicite:1]{index=1}
+
+### 2. Feature Extraction
+
+Extracts:
+- URL length, digit count, punctuation  
+- Subdomain count
+- SSL certificate validity and expiry
+
+### 3. ML Prediction
+
+A classifier trained on a public dataset predicts whether a URL is malicious.
+
+### 4. Online Learning
+
+Users can correct predictions and update the model over time.
+
+---
+
+## ⚙️ Quick Start
+
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/Master-Panpour/ML_model.git
+cd ML_model
+2. Create a .env File
+ini
+Copy code
+APIVOID_API_KEY=your_apiovoid_api_key
+🔒 Add .env to .gitignore so your API key isn’t committed.
+
+3. Install Dependencies
+bash
+Copy code
+pip install -r requirements.txt
+4. Start the API
+bash
+Copy code
+uvicorn app:app --reload
+Visit the docs:
+
+🔗 http://127.0.0.1:8000/docs
+
+📡 API Endpoints
+🟢 GET /
+Returns API health:
+
+json
+Copy code
+{ "message": "Service running" }
+🟡 POST /predict
+Predict malicious/benign for a list of URLs.
+
+Request
+
+json
+Copy code
+{
+  "urls": [
+    "http://example.com/login",
+    "https://suspicious-site.ru"
+  ]
+}
+Response
+
+json
+Copy code
+[
+  {
+    "url": "http://example.com/login",
+    "blacklist": {
+      "success": true,
+      "risk_score": 5,
+      "blacklist_engines": {}
+    },
+    "prediction": "benign"
+  },
+  {
+    "url": "https://suspicious-site.ru",
+    "blacklist": {
+      "success": true,
+      "risk_score": 90,
+      "blacklist_engines": {}
+    },
+    "prediction": "malicious (blacklist)"
+  }
+]
+🔵 POST /feedback
+Send corrected labels to update the model.
+
+Request
+
+json
+Copy code
+{
+  "urls": ["http://example.com/login"],
+  "correct_labels": [0]
+}
+Response
+
+json
+Copy code
+{ "status": "model updated" }
+🔄 Online Learning
+After initial training, the model can continue learning using user‑verified corrections, improving future predictions.
+
+🧰 Tech Stack
+Component	Technology
+API Framework	FastAPI
+ML Library	scikit‑learn
+Caching	requests‑cache
+ASGI Server	Uvicorn
+Dataset	Hugging Face
+
+🛡️ Security & Best Practices
+🗝️ Store API keys via environment variables
+
+🚫 Never commit sensitive credentials
+
+📉 Use cache to reduce external API usage
+
+🚀 Keep dependencies up to date
+
+👥 Contributing
+To contribute:
+
+Fork the repository
+
+Create a branch (git checkout -b feature/xyz)
+
+Commit (git commit -m "Add feature")
+
+Push (git push origin feature/xyz)
+
+Open a pull request
+
+📜 License
+This project is licensed under the GPL-2.0 License.
+
+⭐ If you find this project useful, please consider giving it a star!

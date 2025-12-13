@@ -74,24 +74,29 @@ Users can correct predictions and update the model over time.
 ```bash
 git clone https://github.com/Master-Panpour/ML_model.git
 cd ML_model
-2. Create a .env File
+```
+### 2. Create a .env File
 ini
 Copy code
 APIVOID_API_KEY=your_apiovoid_api_key
 🔒 Add .env to .gitignore so your API key isn’t committed.
 
-3. Install Dependencies
-bash
+### 3. Install Dependencies
+```bash
 Copy code
 pip install -r requirements.txt
-4. Start the API
-bash
+```
+
+### 4. Start the API
+```bash
 Copy code
 uvicorn app:app --reload
+```
+```bash
 Visit the docs:
 
 🔗 http://127.0.0.1:8000/docs
-
+```
 📡 API Endpoints
 🟢 GET /
 Returns API health:
@@ -102,6 +107,7 @@ Copy code
 🟡 POST /predict
 Predict malicious/benign for a list of URLs.
 
+```bash
 Request
 
 json
@@ -112,6 +118,7 @@ Copy code
     "https://suspicious-site.ru"
   ]
 }
+```
 Response
 
 json
@@ -155,7 +162,9 @@ Copy code
 🔄 Online Learning
 After initial training, the model can continue learning using user‑verified corrections, improving future predictions.
 
-🧰 Tech Stack
+---
+
+## 🧰 Tech Stack
 Component	Technology
 API Framework	FastAPI
 ML Library	scikit‑learn
@@ -163,16 +172,15 @@ Caching	requests‑cache
 ASGI Server	Uvicorn
 Dataset	Hugging Face
 
-🛡️ Security & Best Practices
-🗝️ Store API keys via environment variables
+## 🛡️ Security & Best Practices
+ - 🗝️ Store API keys via environment variables
+ - 🚫 Never commit sensitive credentials
+ - 📉 Use cache to reduce external API usage
+ - 🚀 Keep dependencies up to date
 
-🚫 Never commit sensitive credentials
+---
 
-📉 Use cache to reduce external API usage
-
-🚀 Keep dependencies up to date
-
-👥 Contributing
+## 👥 Contributing
 To contribute:
 
 Fork the repository
@@ -185,7 +193,9 @@ Push (git push origin feature/xyz)
 
 Open a pull request
 
-📜 License
-This project is licensed under the GPL-2.0 License.
+---
 
-⭐ If you find this project useful, please consider giving it a star!
+## 📜 License
+ - This project is licensed under the GPL-2.0 License.
+
+# ⭐ If you find this project useful, please consider giving it a star!

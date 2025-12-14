@@ -3,7 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange?style=for-the-badge&logo=tensorflow)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Production-009688?style=for-the-badge&logo=fastapi)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![License](https://img.shields.io/badge/License-GPLv2-blue?style=for-the-badge)
 
 > **Next-Generation Phishing Defense.** A hybrid security engine combining **Deep Learning (Character-Level CNN)**, **Threat Intelligence APIs**, and **Real-Time Online Learning** to detect malicious URLs that bypass traditional lexical filters.
 

@@ -108,10 +108,7 @@ Copy code
 Predict malicious/benign for a list of URLs.
 
 ```bash
-Request
-
-json
-Copy code
+Request -json
 {
   "urls": [
     "http://example.com/login",
@@ -165,12 +162,12 @@ After initial training, the model can continue learning using user‑verified co
 ---
 
 ## 🧰 Tech Stack
-Component	Technology
-API Framework	FastAPI
-ML Library	scikit‑learn
-Caching	requests‑cache
-ASGI Server	Uvicorn
-Dataset	Hugging Face
+ - Component Technology
+ - API Framework	FastAPI
+ - ML Library	scikit‑learn
+ - Caching	requests‑cache
+ - ASGI Server	Uvicorn
+ - Dataset	Hugging Face
 
 ## 🛡️ Security & Best Practices
  - 🗝️ Store API keys via environment variables
@@ -181,21 +178,19 @@ Dataset	Hugging Face
 ---
 
 ## 👥 Contributing
-To contribute:
+### To contribute:
 
-Fork the repository
-
-Create a branch (git checkout -b feature/xyz)
-
-Commit (git commit -m "Add feature")
-
-Push (git push origin feature/xyz)
-
-Open a pull request
+ - Fork the repository
+ - Create a branch (git checkout -b feature/xyz)
+ - Commit (git commit -m "Add feature")
+ - Push (git push origin feature/xyz)
+ - Open a pull request
 
 ---
 
 ## 📜 License
  - This project is licensed under the GPL-2.0 License.
+
+---
 
 # ⭐ If you find this project useful, please consider giving it a star!

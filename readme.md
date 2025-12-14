@@ -31,13 +31,13 @@ Traditional URL filters rely on counting dots, slashes, or checking static black
 
 ```mermaid
 graph LR
-    A[User / Client] -->|POST /predict| B(FastAPI Gateway)
-    B --> C{Whitelist?}
-    C -- Yes --> D[SAFE ✅]
-    C -- No --> E{Blacklist API?}
-    E -- Detected --> F[MALICIOUS 🚨]
-    E -- Clean --> G[🧠 Deep Learning Model]
-    G --> H{Score > 0.65?}
+    A["User / Client"] -->|POST /predict| B("FastAPI Gateway")
+    B --> C{"Whitelist?"}
+    C -- Yes --> D["SAFE ✅"]
+    C -- No --> E{"Blacklist API?"}
+    E -- Detected --> F["MALICIOUS 🚨"]
+    E -- Clean --> G["🧠 Deep Learning Model"]
+    G --> H{"Score > 0.65?"}
     H -- Yes --> F
     H -- No --> D
     ```

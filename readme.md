@@ -48,7 +48,7 @@ This project provides an API to classify URLs as malicious or benign through a b
 
 ### 1. Blacklist API Check
 
-Calls a threat intelligence API to get risk scores and flags for known malicious URLs, with caching to reduce redundant API requests. :contentReference[oaicite:1]{index=1}
+Calls a threat intelligence API to get risk scores and flags for known malicious URLs, with caching to reduce redundant API requests.
 
 ### 2. Feature Extraction
 
@@ -77,27 +77,25 @@ cd ML_model
 ```
 ### 2. Create a .env File
 ini
-Copy code
+```bash
 APIVOID_API_KEY=your_apiovoid_api_key
-🔒 Add .env to .gitignore so your API key isn’t committed.
+```
+- 🔒 Add .env to .gitignore so your API key isn’t committed.
 
 ### 3. Install Dependencies
 ```bash
-Copy code
 pip install -r requirements.txt
 ```
 
 ### 4. Start the API
 ```bash
-Copy code
 uvicorn app:app --reload
 ```
+- Visit the docs:
 ```bash
-Visit the docs:
-
 🔗 http://127.0.0.1:8000/docs
 ```
-📡 API Endpoints
+- 📡 API Endpoints
 🟢 GET /
 Returns API health:
 

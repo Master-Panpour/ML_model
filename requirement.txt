@@ -7,3 +7,4 @@ requests
 requests-cache
 datasets
 tldextract
+python-dotenv

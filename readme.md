@@ -40,7 +40,10 @@ graph LR
     G --> H{"Score > 0.65?"}
     H -- Yes --> F
     H -- No --> D
-    ```
+  ```
+
+  ---
+  
 ## 📂 Project Structure
 ```Bash
 
